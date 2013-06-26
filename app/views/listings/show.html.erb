@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Player:</b>
+  <%= @listing.player %>
+</p>
+
+<p>
+  <b>Video:</b>
+  <%= @listing.video %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @listing.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>
