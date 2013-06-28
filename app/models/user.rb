@@ -9,6 +9,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name,
   :last_name,:current_club,:postion,:profile_name
   
+  validates :first_name,:last_name,:profile_name,:current_club,:postion, presence: true
+  
+  validates :profile_name, uniqueness: true
+  validates :profile_name, format: {
+      with: /\A[a-zA-Z\-\_]+\Z/,
+      message: "must be formatted correctly."
+    }
   # attr_accessible :title, :body
   
   has_many :listings
