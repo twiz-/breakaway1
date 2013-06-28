@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'sqlite3'
 gem 'devise'
+gem 'simple_form', '~> 2.1.0'
 
 # Gems used only for assets and not required
 # in production environments by default.

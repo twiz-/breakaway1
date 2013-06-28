@@ -1,13 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Player:</b>
-  <%= @listing.player %>
-</p>
-
-<p>
-  <b>Video:</b>
-  <%= @listing.video %>
+<b>Player:</b>
+<%= @listing.user.full_name %>
+<b>Video:</b>
+<%= @listing.video %>
 </p>
 
 <p>

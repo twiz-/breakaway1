@@ -10,4 +10,10 @@ class User < ActiveRecord::Base
   :last_name,:current_club,:postion,:profile_name
   
   # attr_accessible :title, :body
+  
+  has_many :listings
+  
+  def full_name
+    first_name + " " + last_name
+  end
 end

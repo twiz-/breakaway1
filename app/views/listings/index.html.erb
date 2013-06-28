@@ -6,7 +6,8 @@
 
 <% @listings.each do |listing| %>
  <div class="well listing span3">
-    <strong><%= listing.player %></strong><br>
+    <strong>name</strong><br>
+    <%= listing.user.full_name %><br>
     <%= listing.video %>
     <p><%= listing.description %></p>
     <div class="meta">

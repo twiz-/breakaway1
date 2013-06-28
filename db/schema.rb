@@ -11,10 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627051555) do
+ActiveRecord::Schema.define(:version => 20130627054213) do
 
   create_table "listings", :force => true do |t|
-    t.string   "player"
     t.string   "video"
     t.text     "description"
     t.datetime "created_at",  :null => false
