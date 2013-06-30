@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   
   validates :profile_name, uniqueness: true
   validates :profile_name, format: {
-      with: /\A[a-zA-Z\-\_]+\Z/,
+      with: /^[a-zA-Z0-9_-]+$/,
       message: "must be formatted correctly."
     }
   # attr_accessible :title, :body
