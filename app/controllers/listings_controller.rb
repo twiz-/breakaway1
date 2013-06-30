@@ -40,7 +40,7 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @listing = Listing.new(params[:listing])
+    @listing = current_user.listings.new(params[:listing])
 
     respond_to do |format|
       if @listing.save
@@ -56,8 +56,10 @@ class ListingsController < ApplicationController
   # PUT /listings/1
   # PUT /listings/1.json
   def update
-    @listing = Listing.find(params[:id])
-
+    @listing = current_user.listings.find(params[:id])
+    if params[:listing] && params[:listing].has_key?(:user_id)
+        params[:listing].delete(:user_id)
+    end
     respond_to do |format|
       if @listing.update_attributes(params[:listing])
         format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
