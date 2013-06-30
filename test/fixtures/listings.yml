@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  video: MyString
-  description: MyText
-
+    description: MyText
+    video: MyString
+    user: tony
 two:
-  video: MyString
-  description: MyText
+    description: MyText
+    video: MyString
+    user: reggie

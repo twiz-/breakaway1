@@ -1,2 +1,14 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+
+<div class="page-header">
+  <h2><%= @user.full_name %></h2>
+</div>  
+  
+  <% if @listings %>
+    <% @listings.each do |listing| %>
+    <div class="well span3">
+      <%= listing.video %>
+    </div>
+    <% end %>
+    
+  <% end %>
+

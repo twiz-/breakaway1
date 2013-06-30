@@ -12,3 +12,11 @@ tony:
     email: "tony@54footy.com"
     current_club: "SJSC"
     postion: "Striker"
+    
+reggie:
+    profile_name: "regmacram1"
+    first_name: "Reggie"
+    last_name: "Reynolds"
+    email: "tony@52footy.com"
+    current_club: "SfSC"
+    postion: "defender"    
