@@ -6,16 +6,16 @@
 
 <% @listings.each do |listing| %>
  <div class="well listing span3">
-    <strong>name</strong><br>
-    <%=link_to listing.user.full_name, profile_path(listing.user) %><br>
-    <%= listing.video %>
-    <p><%= listing.description %></p>
+    <%= listing.user.postion %>
+    <%= listing.user.current_club %>
+    <%= youtube_thumb_embed(listing.video).html_safe %>
     <div class="meta">
-      <%= link_to "View Details", listing %> |
+       <%=link_to listing.user.full_name, profile_path(listing.user) %> |
       <span class="admin">
         <%= link_to "Edit", edit_listing_path(listing) %> |
         <%= link_to "Delete",listing, method: :delete, data:{confirm: "This cannot be undone"} %>
       </span>
     </div>
+    <%= link_to "Add fav", new_user_friendship_path(friend_id: listing.user),class: "btn btn-mini" %>
  </div>
 <% end %>

@@ -7,7 +7,8 @@
   <% if @listings %>
     <% @listings.each do |listing| %>
     <div class="well span3">
-      <%= listing.video %>
+      <%= youtube_thumb_embed(listing.video).html_safe %>
+      <%= listing.description %>
     </div>
     <% end %>
     
