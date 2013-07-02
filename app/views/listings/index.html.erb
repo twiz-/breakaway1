@@ -7,7 +7,7 @@
 <% @listings.each do |listing| %>
  <div class="well listing span3">
     <strong>name</strong><br>
-    <%= listing.user.full_name %><br>
+    <%=link_to listing.user.full_name, profile_path(listing.user) %><br>
     <%= listing.video %>
     <p><%= listing.description %></p>
     <div class="meta">

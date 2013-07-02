@@ -1,0 +1,20 @@
+<% if @friend %>
+  <%= @friend.full_name %>
+  
+  
+  <p>Add <%= @friend.full_name %> to favorites?</p>
+  
+  
+  <%= form_for @user_friendship, method: :post do |form| %>
+    <div class="form form-actions">
+      <%= form.hidden_field :friend_id, value: @friend.profile_name %>
+      <%= submit_tag "Yes, add favorite", class: "btn" %>
+      <%= link_to "cancel", profile_path(@friend), class: 'btn' %>
+  <% end %>
+  
+  
+  
+  
+  
+  
+<% end %>

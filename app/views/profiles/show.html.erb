@@ -1,6 +1,7 @@
 
 <div class="page-header">
   <h2><%= @user.full_name %></h2>
+  <%= link_to "Add fav", new_user_friendship_path(friend_id: @user),class: "btn btn-mini" %>
 </div>  
   
   <% if @listings %>

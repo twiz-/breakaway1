@@ -1,18 +1,28 @@
 Breakaway::Application.routes.draw do
   get "profiles/show"
 
-  devise_for :users
   
-  devise_scope :user do
-    get 'register', to:  'devise/registrations#new', as: :register
-    get 'sign-in', to: 'devise/sessions#new', as: :sign_in
+  
+  as :user do
+    get '/register', to:  'devise/registrations#new', as: :register
+    get '/sign-in', to: 'devise/sessions#new', as: :sign_in
+    get '/logout', to: 'devise/sessions#destroy', as: :logout
+  end
+  
+  devise_for :users, skip: [:sessions]
+  
+  as :user do
+    get "/sign-in" => 'devise/sessions#new', as: :new_user_session
+    post "/sign-in" => 'devise/sessions#create', as: :user_session
+    delete '/logout' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
   resources :listings
+  resources :user_friendships
   
   root to: "listings#index"
   
-  get '/:id', to: "profiles#show"
+  get '/:id', to: "profiles#show", as: 'profile'
 
 
   # The priority is based upon order of creation:

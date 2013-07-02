@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627054213) do
+ActiveRecord::Schema.define(:version => 20130630223907) do
 
   create_table "listings", :force => true do |t|
     t.string   "video"
@@ -22,6 +22,24 @@ ActiveRecord::Schema.define(:version => 20130627054213) do
   end
 
   add_index "listings", ["user_id"], :name => "index_listings_on_user_id"
+
+  create_table "user_favorites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "favorite_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "user_favorites", ["user_id", "favorite_id"], :name => "index_user_favorites_on_user_id_and_favorite_id"
+
+  create_table "user_friendships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_friendships", ["user_id", "friend_id"], :name => "index_user_friendships_on_user_id_and_friend_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
