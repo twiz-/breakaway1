@@ -1,4 +1,6 @@
 class ListingsController < ApplicationController
+  before_filter :authenticate_user!, only: [:create]
+  
   # GET /listings
   # GET /listings.json
   def index
@@ -78,7 +80,7 @@ class ListingsController < ApplicationController
     @listing.destroy
 
     respond_to do |format|
-      format.html { redirect_to listings_url }
+      format.html { redirect_to players_url }
       format.json { head :no_content }
     end
   end

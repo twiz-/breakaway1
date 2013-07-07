@@ -20,8 +20,9 @@ Breakaway::Application.routes.draw do
   resources :listings
   resources :user_friendships
   
-  root to: "listings#index"
+  root to: "profiles#index"
   
+  get '/players', to: 'profiles#index', as:'players'
   get '/:id', to: "profiles#show", as: 'profile'
 
 

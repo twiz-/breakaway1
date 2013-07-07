@@ -4,13 +4,16 @@
   <%= link_to "Add fav", new_user_friendship_path(friend_id: @user),class: "btn btn-mini" %>
 </div>  
   
-  <% if @listings %>
-    <% @listings.each do |listing| %>
-    <div class="well span3">
-      <%= youtube_thumb_embed(listing.video).html_safe %>
-      <%= listing.description %>
-    </div>
-    <% end %>
-    
+<% if @listings %>
+  <% @listings.each do |listing| %>
+  <div class="well span3">
+    <%= youtube_thumb_embed(listing.video).html_safe %>
+    <%= listing.description %>
+    <%= link_to "Delete", listing, method: :delete, data:{confirm: "This cannot be undone"} %>
+  </div>
   <% end %>
+
+<% end %>
+<br>  
+<%= link_to "Post listing", new_listing_path, class: "btn btn-success" %>
 

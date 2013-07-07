@@ -14,4 +14,5 @@
 
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to "Delete", @listing, method: :delete, data:{confirm: "This cannot be undone"} %>
 <%= link_to 'Back', listings_path %>

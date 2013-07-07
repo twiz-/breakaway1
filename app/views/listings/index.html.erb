@@ -1,14 +1,13 @@
 <div class="page-header">
-  <h1>All Players</h1>
+  <h1>Latest Videos Posted</h1>
 </div>  
-<%= link_to "Post listing", new_listing_path, class: "btn btn-success" %>
 <br><br>
 
 <% @listings.each do |listing| %>
  <div class="well listing span3">
-    <%= listing.user.postion %>
-    <%= listing.user.current_club %>
     <%= youtube_thumb_embed(listing.video).html_safe %>
+    <small><%="Added " + time_ago_in_words(listing.created_at) + " ago" %></small><br>
+    <span style="padding-top:-20px;"><%= listing.user.current_club %></span>
     <div class="meta">
        <%=link_to listing.user.full_name, profile_path(listing.user) %> |
       <span class="admin">
@@ -16,6 +15,6 @@
         <%= link_to "Delete",listing, method: :delete, data:{confirm: "This cannot be undone"} %>
       </span>
     </div>
-    <%= link_to "Add fav", new_user_friendship_path(friend_id: listing.user),class: "btn btn-mini" %>
+    <%= link_to "Add fav", new_user_friendship_path(friend_id: listing.user),class: "btn btn-mini btn-warning" %>
  </div>
 <% end %>
