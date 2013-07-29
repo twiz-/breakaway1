@@ -1,6 +1,9 @@
 class ListingsController < ApplicationController
-  before_filter :authenticate_user!, only: [:create]
-  
+  #before_filter :authenticate_user!, only: [:create]
+  skip_before_filter :authenticate_user!, only: [:index, :show]
+  before_filter :load_listing, only: [:show, :edit, :update, :destroy]
+  before_filter :check_permission, only: [:edit, :update, :destroy]
+
   # GET /listings
   # GET /listings.json
   def index
@@ -15,8 +18,6 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
-    @listing = Listing.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @listing }
@@ -36,7 +37,6 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
-    @listing = Listing.find(params[:id])
   end
 
   # POST /listings
@@ -58,7 +58,6 @@ class ListingsController < ApplicationController
   # PUT /listings/1
   # PUT /listings/1.json
   def update
-    @listing = current_user.listings.find(params[:id])
     if params[:listing] && params[:listing].has_key?(:user_id)
         params[:listing].delete(:user_id)
     end
@@ -76,12 +75,23 @@ class ListingsController < ApplicationController
   # DELETE /listings/1
   # DELETE /listings/1.json
   def destroy
-    @listing = Listing.find(params[:id])
     @listing.destroy
 
     respond_to do |format|
       format.html { redirect_to players_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def load_listing
+    @listing = Listing.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render file: 'public/404', status: :not_found
+  end
+
+  def check_permission
+    handle_no_access if current_user != @listing.user
   end
 end

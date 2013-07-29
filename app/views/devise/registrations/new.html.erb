@@ -2,7 +2,11 @@
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-  
+
+  <div><%= f.label :user_type, 'Register As' %>
+    <%= f.select :user_type, [['Player', 'player'], ['Coach', 'coach']] %>
+  </div>
+
   <div><%= f.label :current_club %>
     <%= f.text_field :current_club %>
   </div>

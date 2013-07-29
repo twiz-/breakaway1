@@ -1,0 +1,67 @@
+<% if current_user.coach? %>
+  <div class="page-header">
+    <h1>My Favorites</h1>
+  </div>
+  <% @profiles.each do |profile| %>
+    <div class="well span3">
+      <div class="pull-left"><%= profile.postion %></div>
+      <%= profile.current_club %>
+      <% if !profile.listings.empty? %>
+        <%= youtube_thumb_embed(profile.listings.last.video).html_safe %>
+      <% end %>
+      <%= link_to profile.full_name, profile_path(profile) %>
+    </div>
+  <% end %>
+<%else%>
+  <div class="page-header">
+    <h1>My Listings</h1>
+  </div>
+
+  <div class='clearfix'>
+    <% @listings.each do |listing| %>
+      <div class="well listing span3">
+        <%= youtube_thumb_embed(listing.video).html_safe %>
+        <small><%="Added " + time_ago_in_words(listing.created_at) + " ago" %></small><br>
+        <div class="meta">
+          <span class="admin">
+            <%= link_to "Edit", edit_listing_path(listing) %> |
+            <%= link_to "Delete",listing, method: :delete, data:{confirm: "This cannot be undone"} %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="page-header">
+    <h1>My Games</h1>
+  </div>
+
+  <div class='clearfix'>
+    <% @games.each do |game| %>
+      <div class="well game span3">
+        <div class='scheduled_date'>
+           <%= game.scheduled_date %>
+        </div>
+        <div class='scheduled_time'>
+           <%= game.scheduled_time %>
+        </div>
+        <div class='opponent'>
+           <%= game.opponent %>
+        </div>
+        <div class='location'>
+           <%= game.location %>
+        </div>
+
+        <div class="meta">
+          <span class="admin">
+            <%= link_to "Edit", edit_game_path(game) %> |
+            <%= link_to "Delete", game, method: :delete, data:{confirm: "This cannot be undone"} %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Post listing", new_listing_path, class: "btn btn-success" %>
+  <%= link_to "Post an upcoming game", new_game_path, class: "btn btn-success" %>
+  <br />  <br />
+<%end%>
