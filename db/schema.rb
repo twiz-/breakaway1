@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130630223907) do
+ActiveRecord::Schema.define(:version => 20130818062055) do
+
+  create_table "games", :force => true do |t|
+    t.date     "scheduled_date"
+    t.string   "opponent"
+    t.text     "location"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "scheduled_time"
+  end
+
+  add_index "games", ["user_id"], :name => "index_games_on_user_id"
 
   create_table "listings", :force => true do |t|
     t.string   "video"
@@ -59,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130630223907) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "user_type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

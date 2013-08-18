@@ -2,13 +2,15 @@
   <h1>All Players</h1>
 </div>
 <% @profiles.each do |profile| %>
-  <div class="well span3">
-    <div class="pull-left"><%= profile.postion %></div>
-    <%= profile.current_club %>
+  <div class="well span2">
+    <h3><%= profile.postion %></h3><br>
     <% if !profile.listings.empty? %>
       <%= youtube_thumb_embed(profile.listings.last.video).html_safe %>
     <% end %>
-    <%= link_to profile.full_name, profile_path(profile) %>
+    <%= link_to profile.full_name, profile_path(profile) %><br>
+    
+    <%= profile.current_club %>
+    
     <%= render 'favorite_button', {:profile => profile} %>
   </div>
 <% end %>

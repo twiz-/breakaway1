@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h2><%= @user.full_name %></h2>
+  <h2><%= @user.full_name %> - <%= @user.postion%></h2>
   <%= render 'favorite_button', {:profile => @user} %>
 </div>
 <div class='clearfix'>
   <% if @listings %>
     <% @listings.each do |listing| %>
-      <div class="well span3">
+      <div class="well span2">
         <%= youtube_thumb_embed(listing.video).html_safe %>
         <%= listing.description %>
         <% if current_user == listing.user %>
@@ -18,33 +18,33 @@
 <br>
 
 <div class="page-header">
-  <h3> Games</h3>
+  <h3> My Next Games</h3>
 </div>
 <div class='clearfix'>
-  <% @games.each do |game| %>
-    <div class="well game span3">
-        <div class='scheduled_date'>
-           <%= game.scheduled_date %>
-        </div>
-        <div class='scheduled_time'>
-           <%= game.scheduled_time %>
-        </div>
-        <div class='opponent'>
-           <%= game.opponent %>
-        </div>
-        <div class='location'>
-           <%= game.location %>
-        </div>
-        <% if current_user == @user %>
-          <div class="meta">
-            <span class="admin">
-              <%= link_to "Edit", edit_game_path(game) %> |
-              <%= link_to "Delete", game, method: :delete, data:{confirm: "This cannot be undone"} %>
-            </span>
-          </div>
-        <% end %>
-    </div>
-  <% end %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Game Date</th>
+        <th>Field Location</th>
+        <th>Who We Play</th>
+        <th>Game Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @games.each  do |game| %>
+      <tr>
+        <th class="scheduled_date"><%= game.scheduled_date.strftime("%m/%d/%Y") %></th>
+        <th class="location"><%= game.location %></th>
+        <th class="opponent"><%= game.opponent %></th>
+        <th class="scheduled_time"><%= game.scheduled_time %></th>
+        <!-- TODO guard against actions -->
+         <% if current_user %> 
+        <th><span class="admin"><%= link_to "Edit", edit_game_path(game) %> | <%= link_to "Delete", game,method: :delete,data:{confirm: "This can't be undone"} %></span></th>
+      </tr>
+         <% end %> 
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <% if current_user == @user %>
