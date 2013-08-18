@@ -3,7 +3,9 @@
 </div>
 <% @profiles.each do |profile| %>
   <div class="well span4">
-    <h3><%= profile.postion %></h3><br>
+    <h3><%= profile.postion %> <small>in a <%= profile.system_formation %></small></h3>
+    <h5>Freshman class of <%= profile.incoming_year %></h5>
+    <br>
     <% if !profile.listings.empty? %>
       <%= youtube_thumb_embed(profile.listings.last.video).html_safe %>
     <% end %>
