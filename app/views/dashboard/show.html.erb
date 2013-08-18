@@ -19,7 +19,7 @@
 
   <div class='clearfix'>
     <% @listings.each do |listing| %>
-      <div class="well listing span3">
+      <div class="well listing span4">
         <%= youtube_thumb_embed(listing.video).html_safe %>
         <small><%="Added " + time_ago_in_words(listing.created_at) + " ago" %></small><br>
         <div class="meta">

@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h2><%= @user.full_name %> - <%= @user.postion%></h2>
+  <h2><%= @user.full_name %> - <%= @user.postion%> </h2>
   <%= render 'favorite_button', {:profile => @user} %>
 </div>
 <div class='clearfix'>
   <% if @listings %>
     <% @listings.each do |listing| %>
-      <div class="well span2">
+      <div class="well span4">
         <%= youtube_thumb_embed(listing.video).html_safe %>
         <%= listing.description %>
         <% if current_user == listing.user %>
