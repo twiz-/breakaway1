@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name,
-  :last_name, :current_club, :postion, :profile_name, :user_type
+  :last_name, :current_club, :postion, :profile_name, :user_type, :incoming_year,:system_formation
 
   validates :first_name, :last_name, :profile_name, :current_club, :postion, presence: true
 

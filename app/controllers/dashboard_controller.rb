@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
     else
       @listings = current_user.listings
       @games = current_user.games
+      @user_player = current_user
     end
   end
 end
