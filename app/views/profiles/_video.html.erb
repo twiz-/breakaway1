@@ -3,7 +3,7 @@
     <div class="well span4">
       <%= youtube_thumb_embed(listing.video).html_safe %>
       <%= listing.description %><br>
-      <button type="button" data-toggle="modal" data-target="#<%= parse_youtube_id(listing.video) %>">Watch Game film</button><br>
+      <button class="btn btn-success" data-toggle="modal" data-target="#<%= parse_youtube_id(listing.video) %>">Watch Game film</button><br>
       <div id="<%= parse_youtube_id(listing.video) %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <%= youtube_embed(listing.video).html_safe %>
       </div>
