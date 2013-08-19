@@ -1,14 +1,16 @@
 Breakaway::Application.routes.draw do
+  get "dashboard/show"
+
   get "profiles/show"
-  
+
   as :user do
     get '/register', to:  'devise/registrations#new', as: :register
     get '/sign-in', to: 'devise/sessions#new', as: :sign_in
     get '/logout', to: 'devise/sessions#destroy', as: :logout
   end
-  
+
   devise_for :users, skip: [:sessions]
-  
+
   as :user do
     get "/sign-in" => 'devise/sessions#new', as: :new_user_session
     post "/sign-in" => 'devise/sessions#create', as: :user_session
@@ -17,9 +19,13 @@ Breakaway::Application.routes.draw do
 
   resources :listings
   resources :user_friendships
-  
+  resources :games
+
+  match 'friendships/:friend_id' => 'user_friendships#new', :as => :new_friendship
+  match 'dashboard' => 'dashboard#show', :as => :dashboard
+
   root to: "profiles#index"
-  
+
   get '/players', to: 'profiles#index', as:'players'
   get '/:id', to: "profiles#show", as: 'profile'
 

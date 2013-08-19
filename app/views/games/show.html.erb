@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @game.scheduled_date %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @game.scheduled_time %>
+</p>
+
+<p>
+  <b>Opponent:</b>
+  <%= @game.opponent %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @game.location %>
+</p>
+
+<% if current_user == @game.user %>
+ <%= link_to 'Edit', edit_game_path(@game) %> |
+  <%= link_to "Delete", @game, method: :delete, data:{confirm: "This cannot be undone"} %>
+<% end %>

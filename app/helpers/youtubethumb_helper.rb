@@ -7,6 +7,6 @@ module YoutubethumbHelper
       youtube_url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
       youtube_id = $5
     end
-    %Q{<iframe title="YouTube video player" src="http://img.youtube.com/vi/#{ youtube_id }/1.jpg" frameborder="0" allowfullscreen></iframe>}
+    %Q{<img class="thumb-town"src="http://i1.ytimg.com/vi/#{ youtube_id }/mqdefault.jpg">}
   end
 end
