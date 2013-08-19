@@ -14,8 +14,9 @@ gem 'simple_form', '~> 2.1.0'
 # Gems used only for assets and not required
 # in production environments by default.
 
-gem 'pg'
-
+group :production do
+  gem 'pg'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
