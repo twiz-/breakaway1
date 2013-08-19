@@ -1,55 +1,11 @@
 <div class="page-header">
-  <h1><%= @user.full_name %> <small>is a </small> <%= @user.postion%> <small>in a</small> <%=@user.system_formation %> <small>incoming class of</small> <%= @user.incoming_year %></h1>
-  <%= render 'favorite_button', {:profile => @user} %>
+  <%= render 'player_headline' %>
 </div>
 <div class='clearfix'>
-  <% if @listings %>
-    <% @listings.each do |listing| %>
-      <div class="well span4">
-        <%= youtube_thumb_embed(listing.video).html_safe %>
-        <%= listing.description %><br>
-        <button type="button" data-toggle="modal" data-target="#<%= parse_youtube_id(listing.video) %>">Watch Game film</button><br>
-        <div id="<%= parse_youtube_id(listing.video) %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <%= youtube_embed(listing.video).html_safe %>
-        </div>
-        <% if current_user == listing.user %>
-          <%= link_to "Delete", listing, method: :delete, data:{confirm: "This cannot be undone"} %>
-        <%end%>
-      </div>
-    <% end %>
-  <% end %>
+  <%= render 'video'%>
 </div>
 <br>
-
-<div class="page-header">
-  <h3> My Next Games</h3>
-</div>
-<div class='clearfix'>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Game Date</th>
-        <th>Field Location</th>
-        <th>Who We Play</th>
-        <th>Game Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @games.each  do |game| %>
-      <tr>
-        <th class="scheduled_date"><%= game.scheduled_date.strftime("%m/%d/%Y") %></th>
-        <th class="location"><%= game.location %></th>
-        <th class="opponent"><%= game.opponent %></th>
-        <th class="scheduled_time"><%= game.scheduled_time %></th>
-        <!-- TODO guard against actions -->
-         <% if current_user %> 
-        <th><span class="admin"><%= link_to "Edit", edit_game_path(game) %> | <%= link_to "Delete", game,method: :delete,data:{confirm: "This can't be undone"} %></span></th>
-      </tr>
-         <% end %> 
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render "game_schedule"%>
 
 <% if current_user == @user %>
   <%= link_to "Post listing", new_listing_path, class: "btn btn-success" %>
