@@ -2,16 +2,36 @@
   <h1>All Players</h1>
 </div>
 <% @profiles.each do |profile| %>
-  <div class="well span3">
-    <h3><%= profile.postion %> <small>in a <%= profile.system_formation %></small></h3>
-    <h5>Freshman class of <%= profile.incoming_year %></h5>
-    <br>
-    <% if !profile.listings.empty? %>
-      <%= youtube_thumb_embed(profile.listings.last.video).html_safe %>
-    <% end %>
-    <%= link_to profile.full_name, profile_path(profile) %><br>
+  <div class="well span5">
+    <div style="margin-left:20px;">
+      <div class="row"  style="background-color: red;">
+        <div class="name-club pull-left">
+          <h5>
+          <%= profile.current_club %><br>
+          <%= link_to profile.full_name, profile_path(profile) %>
+            
+          </h5>
+        </div>
+        <div style="background-color: black;" class="pull-right">
+          <h5><%= profile.postion %> <small>in a <%= profile.system_formation %></small><br>Graduating <%= profile.incoming_year %></h5>
+        </div>
+        
+      </div>
+      <div class="row"  style="background-color: blue;">
+        <span style="margin-left: 20px;">
+          <% if !profile.listings.empty? %>
+            <%= youtube_thumb_embed(profile.listings.last.video).html_safe %>
+          <% end %>
+        <span>
+        <br>
+        <br><br><br><br>
+      </div>
+    </div>
     
-    <%= profile.current_club %>
+
+    <br>
+
+    <%= link_to profile.full_name, profile_path(profile) %>
     
     <%= render 'favorite_button', {:profile => profile} %>
   </div>  
