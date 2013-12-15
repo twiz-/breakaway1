@@ -9,32 +9,42 @@
           <h5>
           <%= profile.current_club %><br>
           <%= link_to profile.full_name, profile_path(profile) %>
-            
           </h5>
         </div>
         <div style="background-color: black;" class="pull-right">
-          <h5><%= profile.postion %> <small>in a <%= profile.system_formation %></small><br>Graduating <%= profile.incoming_year %></h5>
+          <h5><%= profile.postion %> <small>in a <%= profile.system_formation %></small>
+            <br>
+            Graduating <%= profile.incoming_year %>
+          </h5>
         </div>
         
       </div>
       <div class="row"  style="background-color: blue;">
         <span style="margin-left: 20px;">
           <% if !profile.listings.empty? %>
-            <%= youtube_thumb_embed(profile.listings.last.video).html_safe %>
+          <a href="#videoCarousel-<%= profile.id %>" data-slide="prev">prev</a>
+          <a href="#videoCarousel-<%= profile.id %>" data-slide="next">next</a>
+              <div id="videoCarousel-<%= profile.id %>" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    <% profile.listings.each do |video| %>
+                        <div class="item <%= 'active'if profile.listings.index(video) == 0 %>">
+                          <%= youtube_thumb_embed(video.video).html_safe %><br>
+                          <%= video.description.truncate(47) %>                      
+                        </div>
+                    <% end %>
+                </div>
+                <br>
+                <ol class="carousel-indicators">            
+                  <% profile.listings.each do |video| %>
+                   <li data-target="#videoCarousel-<%= profile.id %>" data-slide-to="<%= profile.listings.index(video)%>" class="<%= 'active'if profile.listings.index(video) == 0 %>">where</li>
+                  <% end %>
+                </ol>
+              </div>
           <% end %>
-        <span>
-        <br>
-        <br><br><br><br>
+        </span>
       </div>
     </div>
-    
-
-    <br>
-
-    <%= link_to profile.full_name, profile_path(profile) %>
-    
+    <button class="btn btn-mini btn-warning">add fav</button>
     <%= render 'favorite_button', {:profile => profile} %>
   </div>  
 <% end %>
-
-  
