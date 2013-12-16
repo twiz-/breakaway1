@@ -27,5 +27,6 @@ body {
 }
 .carousel-indicators li {
 	margin-top:227px;
+	background-color: green;
 	
 }
