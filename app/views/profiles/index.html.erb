@@ -1,56 +1,60 @@
 <div class="page-header">
   <h1>All Players</h1>
 </div>
-<% @profiles.each do |profile| %>
-  <div class="well span5 both-columns">
-    <div style="margin-left:20px;">
-      <div class="row">
-        <div class="name-club pull-left">
-          <h5><small>
-          <%= profile.current_club %><br>
-          <%= link_to profile.full_name, profile_path(profile) %></small>
-          </h5>
-        </div>
-        <div class="pull-right">
-          <h5><small><span style="color:black;"><%= profile.postion %> in a</span> <%= profile.system_formation %></small>
-            <br>
-            <small><span style="color:black;">Graduating <%= profile.incoming_year %></span></small>
-          </h5>
-        </div>
+<div class="row">
+  <% @profiles.each do |profile| %>
+    <div class="well span5 both-columns">
+      <div style="margin-left:20px;">
+        <div class="row">
+          <div class="name-club pull-left">
+            <h5><small>
+            <%= profile.current_club %><br>
+            <%= link_to profile.full_name, profile_path(profile) %></small>
+            </h5>
+          </div>
+          <div class="pull-right">
+            <h5><small><span style="color:black;"><%= profile.postion %> in a</span> <%= profile.system_formation %></small>
+              <br>
+              <small><span style="color:black;">Graduating <%= profile.incoming_year %></span></small>
+            </h5>
+          </div>
         
-      </div>
-      <div class="row">
-        <span style="margin-left: 20px;">
-          <% if !profile.listings.empty? %>
-              <div id="videoCarousel-<%= profile.id %>" class="carousel slide" data-interval="false">
-                <div class="carousel-inner">
+        </div>
+        <div class="row">
+          <span style="margin-left: 20px;">
+            <% if !profile.listings.empty? %>
+                <div id="videoCarousel-<%= profile.id %>" class="carousel slide" data-interval="false">
+                  <div class="carousel-inner">
+                      <% profile.listings.each do |video| %>
+                          <div class="item <%= 'active'if profile.listings.index(video) == 0 %>">
+                            <%= youtube_thumb_embed(video.video).html_safe %><br>
+                            <span class="video-description"><%= video.description.truncate(40) %></span>                      
+                          </div>
+                      <% end %>
+                  </div><br>
+                  <% if profile.listings.count > 1 %>
+                    <a class="disabled" href="#videoCarousel-<%= profile.id %>" data-slide="prev">prev</a> | 
+                    <a href="#videoCarousel-<%= profile.id %>" data-slide="next">next</a>
+                  <% else %>
+                      <span style="color:gray;"><small><em>just one</em></small></span>
+                  <% end %>  
+                  <br>
+                  <ol class="carousel-indicators">            
                     <% profile.listings.each do |video| %>
-                        <div class="item <%= 'active'if profile.listings.index(video) == 0 %>">
-                          <%= youtube_thumb_embed(video.video).html_safe %><br>
-                          <span class="video-description"><%= video.description.truncate(40) %></span>                      
-                        </div>
+                     <li data-target="#videoCarousel-<%= profile.id %>" data-slide-to="<%= profile.listings.index(video)%>" class="<%= 'active'if profile.listings.index(video) == 0 %>"></li>
                     <% end %>
-                </div><br>
-                <% if profile.listings.count > 1 %>
-                  <a class="disabled" href="#videoCarousel-<%= profile.id %>" data-slide="prev">prev</a> | 
-                  <a href="#videoCarousel-<%= profile.id %>" data-slide="next">next</a>
-                <% else %>
-                    <span style="color:gray;"><small><em>just one</em></small></span>
-                <% end %>  
-                <br>
-                <ol class="carousel-indicators">            
-                  <% profile.listings.each do |video| %>
-                   <li data-target="#videoCarousel-<%= profile.id %>" data-slide-to="<%= profile.listings.index(video)%>" class="<%= 'active'if profile.listings.index(video) == 0 %>"></li>
-                  <% end %>
-                </ol>
-              </div>
-          <% end %>
-        </span>
+                  </ol>
+                </div>
+            <% else %>
+                <span style="color:gray;"><small><em>no videos yet..</em></small></span>
+            <% end %>
+          </span>
+        </div>
       </div>
-    </div>
-    <hr>
-    <button class="btn btn-mini btn-info">add as favorite</button>
-    <%= link_to "View details", profile_path(profile), class: "pull-right" %>
-    <%= render 'favorite_button', {:profile => profile} %>
-  </div>  
-<% end %>
+      <hr>
+      <button class="btn btn-mini btn-info">add as favorite</button>
+      <%= link_to "View details", profile_path(profile), class: "pull-right" %>
+      <%= render 'favorite_button', {:profile => profile} %>
+    </div>  
+  <% end %>
+</div>

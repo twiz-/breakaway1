@@ -1,12 +1,20 @@
 <div class="page-header">
   <%= render 'player_headline' %>
 </div>
-<div class='clearfix'>
-  <%= render 'video'%>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#video" data-toggle="tab">Game Video</a></li>
+    <li><a href="#schedule" data-toggle="tab">Upcoming Games</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="video">
+      <div class='clearfix'>
+        <%= render 'video' %>
+      </div>
+  </div>
+  <div class="tab-pane" id="schedule">
+    <%= render "game_schedule"%>
+  </div>
 </div>
-<br>
-<%= render "game_schedule"%>
-
 <% if current_user == @user %>
   <%= link_to "Post listing", new_listing_path, class: "btn btn-success" %>
   <%= link_to "Post an upcoming game", new_game_path, class: "btn btn-success" %>
