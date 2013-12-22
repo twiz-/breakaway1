@@ -27,6 +27,7 @@ Breakaway::Application.routes.draw do
   root to: "profiles#index"
 
   get '/players', to: 'profiles#index', as:'players'
+  get '/players', to: 'profiles#index', as:'users'
   get '/:id', to: "profiles#show", as: 'profile'
 
 

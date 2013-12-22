@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def index
-    @profiles = User.players
+    @search = User.players.search(params[:q])
+    @profiles = @search.result
   end
 
   def show
