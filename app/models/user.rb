@@ -8,16 +8,28 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name,
   :last_name, :current_club, :postion, :profile_name, :user_type, :incoming_year,:system_formation
-
-  validates :first_name, :last_name, :profile_name, :current_club, :postion, presence: true
-
-  validates :profile_name, uniqueness: true
-  validates :profile_name, format: {
-      with: /^[a-zA-Z0-9_-]+$/,
-      message: "must be formatted correctly."
-    }
-  # attr_accessible :title, :body
+  
   scope :players, where(:user_type => 'player')
+  
+  # this should help in allowing coaches to skip player specific validations allowing
+  # for multiple user types under one user model
+  with_options :if => :player? do |player|
+    player.validates :first_name, :last_name, :profile_name, :current_club, :postion, presence: true
+
+    player.validates :profile_name, uniqueness: true
+    player.validates :profile_name, format: {
+        with: /^[a-zA-Z0-9_-]+$/,
+        message: "must be formatted correctly."
+      }
+    # attr_accessible :title, :body
+  end
+  with_options :if => :coach? do |coach|
+    coach.validates :first_name, :last_name, presence: true
+    # attr_accessible :title, :body
+  end
+  
+  
+  
 
   has_many :listings
   has_many :user_friendships
@@ -34,6 +46,9 @@ class User < ActiveRecord::Base
 
   def coach?
     user_type == 'coach'
+  end
+  def player?
+    user_type == 'player'
   end
 
   def in_favorites?(player)

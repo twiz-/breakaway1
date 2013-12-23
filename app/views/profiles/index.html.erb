@@ -64,7 +64,10 @@
         </div>
       </div>
       <hr>
-      <button class="btn btn-mini btn-info">add as favorite</button>
+      
+      <% if !user_signed_in? %>
+        <button class="btn btn-mini btn-info">add as favorite</button>
+      <% end %>
       <%= link_to "View details", profile_path(profile), class: "pull-right" %>
       <%= render 'favorite_button', {:profile => profile} %>
     </div>  
