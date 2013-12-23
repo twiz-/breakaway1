@@ -1,9 +1,9 @@
 <% if @listings %>
   <% @listings.each do |listing| %>
-    <div class="well span5">
-      <%= youtube_thumb_embed(listing.video).html_safe %><br>
+    <div class="well span4">
+      <%= youtube_thumb_embed(listing.video).html_safe %>
       <%= listing.description %><br>
-      <%= link_to "Watch these highlights", listing.video, class: "fancybox-media" %><br>
+      <strong><%= link_to "Watch these highlights", listing.video, class: "fancybox-media" %></strong><br>
       <% if current_user == listing.user %>
         <%= link_to "Delete", listing, method: :delete, data:{confirm: "This cannot be undone"} %>
       <%end%>

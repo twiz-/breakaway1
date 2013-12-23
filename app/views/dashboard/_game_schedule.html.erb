@@ -1,0 +1,23 @@
+<div class='clearfix'>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Game Date</th>
+        <th>Field Location</th>
+        <th>Who We Play</th>
+        <th>Game Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @games.each  do |game| %>
+      <tr>
+        <th class="scheduled_date"><%= game.scheduled_date.strftime("%m/%d/%Y") %></th>
+        <th class="location"><%= game.location %></th>
+        <th class="opponent"><%= game.opponent %></th>
+        <th class="scheduled_time"><%= game.scheduled_time %></th>
+        <th><span class="admin"><%= link_to "Edit", edit_game_path(game) %> | <%= link_to "Delete", game,method: :delete,data:{confirm: "This can't be undone"} %></span></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

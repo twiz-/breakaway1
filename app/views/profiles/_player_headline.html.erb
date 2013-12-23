@@ -1,2 +1,13 @@
-<h1><%= @user.full_name %> <small>is a </small> <%= @user.postion%> <small>in a</small> <%=@user.system_formation %> <small>incoming class of</small> <%= @user.incoming_year %></h1>
-<%= render 'favorite_button', {:profile => @user} %>
+<div class="row">
+  <div class="span4">
+    <ul class="user-creds-list">
+      <li><strong><%= @user.full_name %></strong></li>
+      <li><%= @user.postion.upcase %></li>
+      <li><%=@user.system_formation %></li>
+      <li><%= @user.incoming_year %> (Graduating year)</li>  
+    </ul>
+  </div>
+  <div class="offset3 span4">
+    <%= render 'favorite_button', {:profile => @user} %>
+  </div>
+</div>

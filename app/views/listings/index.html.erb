@@ -13,7 +13,6 @@
       <span style="padding-top:-20px;"><%= listing.user.current_club %></span><br>
       <%= link_to listing.user.full_name, profile_path(listing.user) %> - <%= listing.user.postion%>
     </div>  
-    <%= render '/profiles/favorite_button', {:profile => listing.user} %>
  </div>
 <% end %>
 </div>

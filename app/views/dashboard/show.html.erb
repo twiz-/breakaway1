@@ -12,55 +12,27 @@
       <%= link_to profile.full_name, profile_path(profile) %>
     </div>
   <% end %>
-<%else%>
-  <div class="page-header">
-    <h1>My Listings <small>incoming class <%= @user_player.incoming_year %> club system <%= @user_player.system_formation %></small></h1>
-  </div>
+<% else %>
 
-  <div class='clearfix'>
-    <% @listings.each do |listing| %>
-      <div class="well listing span4">
-        <%= youtube_thumb_embed(listing.video).html_safe %>
-        <small><%="Added " + time_ago_in_words(listing.created_at) + " ago" %></small><br>
-        <div class="meta">
-          <span class="admin">
-            <%= link_to "Edit", edit_listing_path(listing) %> |
-            <%= link_to "Delete",listing, method: :delete, data:{confirm: "This cannot be undone"} %>
-          </span>
-        </div>
+<div class="page-header">
+  <h1>Dashboard</h1>What your profile looks like to coaches - <%= link_to "Your Public profile", profile_path(current_user), target: "_blank" %>
+</div>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#video" data-toggle="tab">Game Video</a></li>
+    <li><a href="#schedule" data-toggle="tab">Upcoming Games</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="video">
+      <div class='clearfix'>
+        <%= render 'video' %>
       </div>
-    <% end %>
-    <%= link_to "Post listing", new_listing_path, class: "btn btn-success" %>
   </div>
+  <div class="tab-pane" id="schedule">
+    <%= render "game_schedule"%>
+  </div>
+</div>
 
-  <div class="page-header">
-    <h1>My Next Games</h1>
-  </div>
-
-  <div class='clearfix'>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Game Date</th>
-          <th>Field Location</th>
-          <th>Who We Play</th>
-          <th>Game Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @games.each  do |game| %>
-        <tr>
-          <th class="scheduled_date"><%= game.scheduled_date.strftime("%m/%d/%Y") %></th>
-          <th class="location"><%= game.location %></th>
-          <th class="opponent"><%= game.opponent %></th>
-          <th class="scheduled_time"><%= game.scheduled_time %></th>
-          <th><span class="admin"><%= link_to "Edit", edit_game_path(game) %> | <%= link_to "Delete", game,method: :delete,data:{confirm: "This can't be undone"} %></span></th>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  
-  <%= link_to "Post an upcoming game", new_game_path, class: "btn btn-success" %>
-  <br />  <br />
+<hr>
+  <%= link_to "Post new highlight video", new_listing_path, class: "btn btn-success" %>
+  <%= link_to "Post a new game time", new_game_path, class: "btn btn-success" %>
 <% end %>
