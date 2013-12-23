@@ -12,7 +12,11 @@ class ProfilesController < ApplicationController
     if @user
       @listings = @user.listings
       @games = @user.games
-
+      respond_to do |format|
+        format.html
+        format.csv {send_data Game.to_csv(@games)}
+      end
+      return
       render action: :show
     else
       render file: "public/404", status: 404, formats: [:html]

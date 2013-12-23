@@ -30,7 +30,6 @@ Breakaway::Application.routes.draw do
   get '/players', to: 'profiles#index', as:'users'
   get '/:id', to: "profiles#show", as: 'profile'
 
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
