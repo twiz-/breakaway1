@@ -24,7 +24,7 @@ Breakaway::Application.routes.draw do
   match 'friendships/:friend_id' => 'user_friendships#new', :as => :new_friendship
   match 'dashboard' => 'dashboard#show', :as => :dashboard
 
-  root to: "profiles#index"
+  root to: "marketing#splash"
 
   get '/players', to: 'profiles#index', as:'players'
   get '/players', to: 'profiles#index', as:'users'
