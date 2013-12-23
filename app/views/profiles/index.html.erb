@@ -1,6 +1,7 @@
 <div class="page-header">
   <h1>All Players</h1>
 </div>
+<%= link_to "View latest postings", listings_path %>
 <%= search_form_for @search do |f| %>
   <div class="field">
     <%= f.label :postion_cont, "Search by postion" %>
@@ -13,7 +14,7 @@
 <% end %>
 
 <div class="row">
-  <% @profiles.each do |profile| %>
+  <% @profiles.shuffle.each do |profile| %>
     <div class="well span5 both-columns">
       <div style="margin-left:20px;">
         <div class="row">

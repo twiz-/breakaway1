@@ -2,22 +2,18 @@
   <h1>Latest Videos Posted</h1>
 </div>
 <br>
-
+<div class="row">
 <% @listings.each do |listing| %>
  <div class="well listing span3">
-    <%= youtube_thumb_embed(listing.video).html_safe %>
-    <small><%="Added " + time_ago_in_words(listing.created_at) + " ago" %></small><br>
-    <span style="padding-top:-20px;"><%= listing.user.current_club %></span>
-    <div class="meta">
-      <%=link_to listing.user.full_name, profile_path(listing.user) %>
-      <% if current_user == listing.user %>
-        <span class="admin">
-          |
-          <%= link_to "Edit", edit_listing_path(listing) %> |
-          <%= link_to "Delete",listing, method: :delete, data:{confirm: "This cannot be undone"} %>
-        </span>
-      <%end%>
-    </div>
+    <div class="span3 dashboard-listing">
+      <%= youtube_thumb_embed(listing.video).html_safe %>
+    </div><br>
+    <div class="span3">
+      <small><%="Added " + time_ago_in_words(listing.created_at) + " ago" %></small><br>
+      <span style="padding-top:-20px;"><%= listing.user.current_club %></span><br>
+      <%= link_to listing.user.full_name, profile_path(listing.user) %> - <%= listing.user.postion%>
+    </div>  
     <%= render '/profiles/favorite_button', {:profile => listing.user} %>
  </div>
 <% end %>
+</div>
