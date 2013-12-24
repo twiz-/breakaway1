@@ -1,12 +1,12 @@
+<h1>Hey from players player</h1>
+
 <h2>Sign up</h2>
 
 <%= form_for(@user, :as => :user, :url => registration_path(@user)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :user_type, 'Register As' %>
-    <%= f.select :user_type, [['Player', 'player'], ['Coach', 'coach']] %>
+  <div><%= f.hidden_field :user_type, value: 'player' %>
   </div>
-
   <div><%= f.label :current_club %>
     <%= f.text_field :current_club %>
   </div>
