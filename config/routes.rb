@@ -8,8 +8,12 @@ Breakaway::Application.routes.draw do
     get '/sign-in', to: 'devise/sessions#new', as: :sign_in
     get '/logout', to: 'devise/sessions#destroy', as: :logout
   end
-
-  devise_for :users, skip: [:sessions]
+  
+  devise_for :users, :controllers => {:registrations => "users/registrations"},
+    skip: [:sessions] do
+      get '/signup_player' => "users/registrations#players",   :as => :new_player_registration
+      get '/signup_coach' => "users/registrations#coaches",   :as => :new_coach_registration
+    end
 
   as :user do
     get "/sign-in" => 'devise/sessions#new', as: :new_user_session
