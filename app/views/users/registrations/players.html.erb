@@ -1,62 +1,12 @@
 <h1>Headline with cialdini</h1>
-<h2>Quote from a college coach</h2>
-
-<h2>Sign up(move this into a legend because youare a legend)</h2>
+<h4>"the more we see someone play the better sense we get of their ability and fit with our program" - joe college coach</h4>
 <div class="row span12">
     <div class="span5 well">
-      <%= render 'players_form' %>
+     <legend>Get going in 30 secs</legend>
+     <%= render 'players_form' %>
     </div>  
     <div class="span5 well">
-      <div style="margin-left:20px;">
-        <div class="row">
-          <div class="name-club pull-left">
-            <h5><small>
-            Barcelona<br>
-            Lionel Messi</small>
-            </h5>
-          </div>
-          <div class="pull-right">
-            <h5><small><span style="color:black;">Midfielder in a</span> 4-3-3</small>
-              <br>
-              <small><span style="color:black;">Graduating 2018</span></small>
-            </h5>
-          </div>
-        
-        </div>
-        <div class="row">
-          <span style="margin-left: 20px;">
-                <div id="videoCarousel-mktng" class="carousel slide" data-interval="false">
-                  <div class="carousel-inner">
-                    <div class="item active">
-                      <%= youtube_thumb_embed("http://www.youtube.com/watch?v=2VvxwDfHmnc").html_safe %><br>
-                      <span class="video-description">This is a thing</span>                      
-                    </div>
-                    <div class="item">
-                      <%= youtube_thumb_embed("http://www.youtube.com/watch?v=nvbbzVCyoik").html_safe %><br>
-                      <span class="video-description">This is another thing</span>                      
-                    </div>
-                    <div class="item">
-                      <%= youtube_thumb_embed("http://www.youtube.com/watch?v=sbM-KFVmreM").html_safe %><br>
-                      <span class="video-description">This the last thing</span>                      
-                    </div>
-                  </div><br>
-                    <a class="disabled" href="#videoCarousel-mktng" data-slide="prev">prev</a> | 
-                    <a href="#videoCarousel-mktng" data-slide="next">next</a>
-                  <br>
-                  <ol class="carousel-indicators">            
-                     <li data-target="#videoCarousel-mktng" data-slide-to="0" class='active'</li>
-                     <li data-target="#videoCarousel-mktng" data-slide-to="1"</li>
-                     <li data-target="#videoCarousel-mktng" data-slide-to="2"</li>
-                  </ol>
-                </div>
-          </span>
-        </div>
-      </div>
-      <hr>
-        <button class="btn btn-mini btn-info">add as favorite</button>
-        <a href="#"class="pull-right">View details</a>
+      <%= render 'players_example_posting' %>
     </div>
 </div>
 </div>
-
-
