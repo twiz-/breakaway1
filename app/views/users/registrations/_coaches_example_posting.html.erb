@@ -1,0 +1,14 @@
+Or see <%= link_to "all profiles", listings_path, target: "_blank" %>
+
+<% @listings.each do |listing| %>
+ <div class="well listing span2 offset1">
+    <div class="span2 dashboard-listing">
+      <%= youtube_thumb_embed(listing.video).html_safe %>
+    </div><br>
+    <div class="span3">
+      <small><%="Added " + time_ago_in_words(listing.created_at) + " ago" %></small><br>
+      <span style="padding-top:-20px;"><%= listing.user.current_club %></span><br>
+      <%= link_to listing.user.full_name, profile_path(listing.user), target: "_blank" %> - <%= listing.user.postion%>
+    </div>  
+ </div>
+<% end %>

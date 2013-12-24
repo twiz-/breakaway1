@@ -19,6 +19,8 @@
 <div class="page-header">
   <h1>Dashboard</h1>What your profile looks like to coaches - <%= link_to "Your Public profile", profile_path(current_user), target: "_blank" %>
 </div>
+<%= link_to "Post new highlight video", new_listing_path, class: "btn btn-success" %>
+<%= link_to "Post a new game time", new_game_path, class: "btn btn-success" %><br><br>
 <ul class="nav nav-tabs">
     <li class="active"><a href="#video" data-toggle="tab">Game Video</a></li>
     <li><a href="#schedule" data-toggle="tab">Upcoming Games</a></li>
@@ -33,8 +35,4 @@
     <%= render "game_schedule"%>
   </div>
 </div>
-
-<hr>
-  <%= link_to "Post new highlight video", new_listing_path, class: "btn btn-success" %>
-  <%= link_to "Post a new game time", new_game_path, class: "btn btn-success" %>
 <% end %>

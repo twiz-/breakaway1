@@ -5,10 +5,8 @@
       <%= youtube_thumb_embed(listing.video).html_safe %>
       <small><%="Added " + time_ago_in_words(listing.created_at) + " ago" %></small><br>
       <div class="meta">
-        <span class="admin">
           <%= link_to "Edit", edit_listing_path(listing) %> |
           <%= link_to "Delete",listing, method: :delete, data:{confirm: "This cannot be undone"} %>
-        </span>
       </div>
     </div>
   <% end %>

@@ -1,29 +1,13 @@
 <h1>Hey From coach mutha lovva</h1>
 
 <h2>Sign up</h2>
-
-<%= form_for(@user, :as => :user, :url => registration_path(@user)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div>
-    <%= f.hidden_field :user_type, value: 'coach' %>
-  </div>
-  <div><%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div><%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div><%= f.label :email %>
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %>
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="row span12">
+    <div class="span5 well">
+     <legend>Get going in 30 secs</legend>
+     <%= render 'coaches_form' %>
+    </div>  
+    <div class="span5">
+      <%= render 'coaches_example_posting'  %>
+    </div>
+</div>
+</div>
