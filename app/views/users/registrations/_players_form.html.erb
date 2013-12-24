@@ -1,0 +1,63 @@
+<div style="margin-left:80px;">
+  <%= form_for(@user, :as => :user, :url => registration_path(@user)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div>
+      <%= f.hidden_field :user_type, value: 'player' %>
+    </div>
+    <div>
+      <span>What club do you play for?</span><br>
+      <%= f.text_field :current_club %>
+    </div>
+    <div>
+      <span>What formation do you guys play?</span><br>
+      <%= f.select(:system_formation,[['4-3-3'],['4-4-2'],['3-4-3'],['4-5-1'],['3-2-1'],['4-3-3']]) %>
+    </div>
+    <div>
+      <span>When do you graduate high school?</span><br>
+      <%= f.select(:incoming_year,[['2014'],['2015'],['2016'],['2017'],['2018'],['2019']]) %>
+    </div><br>
+    <div>
+      <span>What position do you play best in?</span><br>
+      <%= f.radio_button :postion, 'striker' %> Striker<br>
+      <%= f.radio_button :postion, 'defender' %> Defender<br>
+      <%= f.radio_button :postion, 'midfield' %> Midfield<br>
+    </div><br>
+    <div>
+      <span>First name only</span><br>
+      <%= f.text_field :first_name %>
+    </div>
+    <div>
+      <span>Last name only</span><br>
+      <%= f.text_field :last_name %>
+    </div>
+    <div>
+      <span>searchable profile name</span><br>
+      <%= f.text_field :profile_name %>
+    </div>
+    <div>
+      <span>Email (the one you actually check)</span><br>
+      <%= f.email_field :email %>
+    </div>
+
+    <div>
+      <span>Secure Password</span><br>
+      <%= f.password_field :password %>
+    </div>
+
+    <div>
+      <span>Password Confirmation</span><br>
+     <%= f.password_field :password_confirmation %>
+    </div>
+</div>  
+<div>
+
+  <div>
+   <%= f.submit "Get more looks from college coaches", class: 'btn btn-success btn-large' %>
+  </div>
+</div> 
+  <% end %>
+<br>
+<br>
+<br>
+<%= render 'devise/shared/links'%>

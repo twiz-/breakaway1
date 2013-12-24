@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   end
   with_options :if => :coach? do |coach|
     coach.validates :first_name, :last_name, presence: true
+    # 2-step auth (devise email) will avoid players signing up as coaches
     # attr_accessible :title, :body
   end
   
