@@ -15,7 +15,7 @@
 
 <div class="row">
   <% @profiles.shuffle.each do |profile| %>
-   <% if profile.listings.count > 1 %>
+   <% if profile.listings.count >= 1 %>
       <div class="well span5">
         <div style="margin-left:20px;">
           <div class="row">
